@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="account_reports.action_account_report_partner_ledger
+" model="ir.actions.client">
+            <field name="name">Partner Ledger</field>
+            
+        </record>
+    
+</odoo>
