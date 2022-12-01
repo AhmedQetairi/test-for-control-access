@@ -16,18 +16,18 @@ class AccountPaymentInherit(models.Model):
 #
     
     def action_share_whatsapp(self):
-        if self.partner_id.phone:
-            
-       
-            msg = 'Hello you are welcome'
-            # whatsapp_api_url = "https://api.whatsapp.com/send?" 
-            raise ValidationError(("Hi Ahmad"))
+        if not self.partner_id.phone:
+            raise UserError(("Mobile Number for this Customer doesn't exist"))
+        else:
+            msg = 'مرحبا *%s*, ~شكراً لإتمامك لعملية الدفع. إلي* إيصال الدفع * - الذي تبلغ قيمته ~%0.2f من المزرعاوي,\nلا تتردد في التواصل معنا إذا كانت لديك أي أسئلة أو استفسارات.' % (self.partner_id.name,self.amount)
+            whatsapp_api_url = "https://web.whatsapp.com/send?phone=%s&text=%s" % (self.partner_id.phone , msg)
+        # raise UserError(("Hi Ahmad"))
         
         
         
         return {
            'type' : 'ir.actions.act_url',
            'target' : 'new',
-           # 'url' : whatsapp_api_url
+           'url' : whatsapp_api_url
         }
         
